@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 
 export default function Product() {
   const [products, setProducts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1); // Track the current page
-  const totalPages = Math.ceil(100 / 20); // Calculate the total number of pages
+  const [currentPage, setCurrentPage] = useState(1); 
+  const totalPages = Math.ceil(100 / 20); 
 
   async function getData(page) {
     try {
@@ -22,8 +22,8 @@ export default function Product() {
   }
 
   useEffect(() => {
-    getData(currentPage); // Load products for the initial page
-  }, [currentPage]); // Trigger a fetch when currentPage changes
+    getData(currentPage); 
+  }, [currentPage]); 
 
   const goToPreviousPage = () => {
     if (currentPage > 1) {

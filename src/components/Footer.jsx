@@ -7,7 +7,7 @@ import Navbar from "react-bootstrap/Navbar";
 
 export default function Footer() {
   return (
-    <footer className="positon-fixed fixed-bottom bg-dark text-white mt-4">
+    <footer className="fixed-bottom bg-dark text-white mt-4">
       <Container>
         <Row>
           <Col className="text-center py-3">

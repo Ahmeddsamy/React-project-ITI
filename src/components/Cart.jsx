@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(";").shift();
-}
+import { useNavigate } from "react-router-dom"; 
 
 function Cart() {
   const [cart, setCart] = useState(null);
-
+  const navigate = useNavigate(); 
   useEffect(() => {
     const getCookie = (name) => {
       const value = `; ${document.cookie}`;
@@ -16,14 +12,14 @@ function Cart() {
       if (parts.length === 2) return parts.pop().split(";").shift();
     };
 
-    const token = getCookie("token"); // Retrieve the token from cookies
+    const token = getCookie("token");
     if (!token) {
       console.error("No token found");
       return;
     }
 
     const config = {
-      headers: { token: token }, // Use the token for authentication
+      headers: { token: token },
     };
 
     axios
@@ -33,6 +29,44 @@ function Cart() {
       })
       .catch((error) => console.error("Error fetching cart:", error));
   }, []);
+
+  const handleOrder = () => {
+    const getCookie = (name) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(";").shift();
+    };
+
+    const token = getCookie("token");
+    if (!token) {
+      console.error("No token found");
+      return;
+    }
+
+    const config = {
+      headers: { token: token },
+    };
+
+    const orderDetails = {
+      paymentMethod: "cashOnDelivery",
+    };
+
+    axios
+      .post(
+        "https://ahmed-samy-node-project-iti.onrender.com/order",
+        orderDetails,
+        config
+      )
+      .then((response) => {
+        console.log("Order placed successfully", response.data);
+        navigate("/order"); 
+
+      })
+      .catch((error) => {
+        console.error("Error placing order:", error);
+        alert("There was an error placing your order. Please try again.");
+      });
+  };
 
   if (!cart) return <div>Loading cart...</div>;
 
@@ -72,6 +106,9 @@ function Cart() {
           </tr>
         </tbody>
       </table>
+      <button className="btn btn-success" onClick={handleOrder}>
+        Place Order
+      </button>
     </div>
   );
 }

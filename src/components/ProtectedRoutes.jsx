@@ -6,7 +6,6 @@ function getCookie(name) {
   for (let i = 0; i < cookieArr.length; i++) {
     let cookiePair = cookieArr[i].split("=");
     if (name === cookiePair[0].trim()) {
-      // Decode the cookie value and return
       return decodeURIComponent(cookiePair[1]);
     }
   }

@@ -35,7 +35,7 @@ export default function ProductDetail() {
 
     fetchProductDetails();
   }, [productId]);
-  //   Add to cart function
+
   const handleAddToCart = async () => {
     const token = getCookie("token");
     if (!token) {
