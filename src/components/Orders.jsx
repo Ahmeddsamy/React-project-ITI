@@ -24,13 +24,16 @@ export default function Orders() {
     axios
       .get("https://ahmed-samy-node-project-iti.onrender.com/order", config)
       .then((response) => {
-        setOrders(response.data);
+        const sortedOrders = response.data.sort(
+          (a, b) => new Date(b.orderDate) - new Date(a.orderDate)
+        );
+        setOrders(sortedOrders);
       })
       .catch((error) => console.error("Error fetching orders:", error));
   }, []);
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 mb-5">
       <h2>Your Orders</h2>
       {orders.length > 0 ? (
         orders.map((order) => (

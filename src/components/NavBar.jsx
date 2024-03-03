@@ -27,9 +27,6 @@ function NavBar() {
             <NavLink to="/product" className="nav-link">
               Products
             </NavLink>
-            <NavLink to="/category" className="nav-link">
-              Categories
-            </NavLink>
 
             {token ? (
               <>

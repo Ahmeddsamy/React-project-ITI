@@ -3,11 +3,10 @@ import { Button, Card, Row, Col, Carousel } from "react-bootstrap";
 
 export default function Home() {
   const [categories, setCategories] = useState([]);
-  const [activeIndex, setActiveIndex] = useState(0); 
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  
   const categoriesPerSlide = 4;
-  let slides = []; 
+  let slides = [];
 
   useEffect(() => {
     fetch("https://ahmed-samy-node-project-iti.onrender.com/category")
@@ -16,7 +15,6 @@ export default function Home() {
       .catch((error) => console.error("Error fetching categories:", error));
   }, []);
 
-  
   for (let i = 0; i < categories.length; i += categoriesPerSlide) {
     slides.push(categories.slice(i, i + categoriesPerSlide));
   }
@@ -33,7 +31,6 @@ export default function Home() {
 
   return (
     <div>
-
       <Carousel>
         <Carousel.Item>
           <img
@@ -46,7 +43,6 @@ export default function Home() {
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
           </Carousel.Caption>
         </Carousel.Item>
-
       </Carousel>
       <h2>Categories</h2>
       {slides.length > 0 && (
@@ -67,12 +63,15 @@ export default function Home() {
               </Col>
             ))}
           </Row>
-          <Button variant="primary" onClick={prevSlide}>
-            &lt;
-          </Button>
-          <Button variant="primary" onClick={nextSlide}>
-            &gt;
-          </Button>
+          <div className="mx-auto">
+            {" "}
+            <Button className="mb-5 " variant="primary" onClick={prevSlide}>
+              &lt;
+            </Button>
+            <Button className="mb-5 " variant="primary" onClick={nextSlide}>
+              &gt;
+            </Button>
+          </div>
         </div>
       )}
     </div>

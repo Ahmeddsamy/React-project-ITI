@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
   const [cart, setCart] = useState(null);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   useEffect(() => {
     const getCookie = (name) => {
       const value = `; ${document.cookie}`;
@@ -59,8 +59,7 @@ function Cart() {
       )
       .then((response) => {
         console.log("Order placed successfully", response.data);
-        navigate("/order"); 
-
+        navigate("/order");
       })
       .catch((error) => {
         console.error("Error placing order:", error);
